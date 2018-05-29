@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Poll, { Action } from './Poll';
+import styles from './app.css';
 
 const { Save } = Action;
-
-const controlStyle = {
-    cursor: 'pointer',
-    paddingLeft: '10px'
-};
-const appStyle = {
-    margin: '0 auto',
-    padding: '10px',
-    display: 'table'
-};
 
 @connect((state, props) => state || {})
 class App extends Component {
@@ -35,12 +26,12 @@ class App extends Component {
     render() {
 
         return (
-            <div style={appStyle}>
-                <div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
+            <div className={styles.center}>
+                <div className={styles.control}>
                     <span>Search...</span>
-                    <span style={controlStyle}>📝</span>
-                    <span style={controlStyle} onClick={this.save}>💾</span>
-                    <span style={controlStyle}>🗑️</span>
+                    <span className={styles.controlEl}>📝</span>
+                    <span className={styles.controlEl} onClick={this.save}>💾</span>
+                    <span className={styles.controlEl}>🗑️</span>
                 </div>
                 <Poll />
             </div >

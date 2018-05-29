@@ -1,0 +1,16 @@
+
+.center {
+    margin: '0 auto';
+    padding: '10px';
+    display: 'table';
+}
+
+.control {
+    padding-top: '10px';
+    padding-bottom: '10px';
+}
+
+.control-el {
+    cursor: 'pointer';
+    padding-left: '10px';
+}

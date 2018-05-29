@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { fetch, save } from '../service/Service';
+import styles from './poll.css';
 
 function update(state, action) {
     const { type } = action;
@@ -24,7 +25,8 @@ function IncrementLike(state, { subjectId, optionId }) {
     const subject = copylist.filter((sub) => sub.id === subjectId)[0];
     subject.options.filter((option) => option.id === optionId)
         .map((option) => {
-            option.like = option.like ? option.like + 1 : 1;
+            option.like = option.like + 1 || 1;
+            //option.like ? option.like + 1 : 1;
             return option;
         });
     return { subjects: copylist };
@@ -60,16 +62,6 @@ export const Action = {
     }
 };
 
-const optionStyle = {
-    cursor: 'pointer',
-    display: 'inline-block',
-    paddingLeft: '10px'
-};
-
-const subTitleStyle = {
-    fontSize: '25px'
-};
-
 class Option extends Component {
 
     onLike = () => {
@@ -80,7 +72,7 @@ class Option extends Component {
         const { text, like = 0 } = this.props;
         const label = `${like || ''}👍${text}`;
         return (
-            <div onClick={this.onLike} style={optionStyle}>
+            <div onClick={this.onLike} className={styles.option}>
                 <span style={{ fontSize: '20px' }}>{label}</span>
             </div >
         );
@@ -102,7 +94,7 @@ class Subject extends Component {
         const { options } = subject;
         return (
             <div>
-                <div style={subTitleStyle}>{subject.text}</div>
+                <div className={styles.subjectTitle}>{subject.text}</div>
                 {
                     options.map((option, idx) => (<Option key={idx} {...option} onClick={this.onClick} />))
                 }
