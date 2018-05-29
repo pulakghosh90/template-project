@@ -26,7 +26,6 @@ function IncrementLike(state, { subjectId, optionId }) {
     subject.options.filter((option) => option.id === optionId)
         .map((option) => {
             option.like = option.like + 1 || 1;
-            //option.like ? option.like + 1 : 1;
             return option;
         });
     return { subjects: copylist };
