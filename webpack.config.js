@@ -1,13 +1,17 @@
 const { SourceMapDevToolPlugin } = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const BUILD_DIR = path.resolve(__dirname, 'public/js');
+const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'src');
-const jsBundle = 'bundle.js';
-const cssBundle = 'styles.css';
 
-module.exports = {
+const template = './src/template/index.html';
+const jsBundle = 'js/bundle.js';
+const cssBundle = 'css/styles.css';
+const htmlBundle = 'html/index.html';
+
+const webpackConfig = {
     entry: APP_DIR + '/index.js',
     output: {
         path: BUILD_DIR,
@@ -43,10 +47,19 @@ module.exports = {
             filename: jsBundle + '.map'
         }),
         new ExtractTextPlugin({
-            filename: (getPath) => (getPath('../css/[name].css')
-                .replace('css/js', 'css')
-                .replace(getPath('[name].css'), cssBundle)),
+            filename: (getPath) => getPath('[name].css').replace(getPath('[name].css'), cssBundle),
             allChunks: true
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Poll',
+            filename: htmlBundle,
+            template,
+            minify: {
+                collapseWhitespace: true
+            },
+            hash: true
         })
     ]
-}
+};
+
+module.exports = webpackConfig;
