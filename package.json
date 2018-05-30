@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "./node_modules/.bin/webpack --mode development --watch",
-    "build": "./node_modules/.bin/webpack --mode production",
+    "build:dev": "webpack --mode development --watch",
+    "build:prod": "webpack --mode production",
+    "dev": "webpack-dev-server --mode development",
     "start": "node server.js"
   },
   "author": "Pulakendu Ghosh",
@@ -31,6 +32,8 @@
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "^4.0.0-alpha.0",
     "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3",

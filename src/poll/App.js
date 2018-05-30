@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Poll, { Action } from './Poll';
-import styles from './app.css';
+import styles from './app.scss';
 
 const { Save } = Action;
 

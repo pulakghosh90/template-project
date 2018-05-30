@@ -25,7 +25,7 @@ const webpackConfig = {
                 use: 'babel-loader'
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
@@ -36,19 +36,21 @@ const webpackConfig = {
                                 sourceMap: true,
                                 modules: true
                             }
-                        }
+                        },
+                        'sass-loader'
                     ]
                 })
             }
         ]
     },
     plugins: [
-        new SourceMapDevToolPlugin({
-            filename: jsBundle + '.map'
-        }),
+        // new SourceMapDevToolPlugin({
+        //     filename: jsBundle + '.map'
+        // }),
         new ExtractTextPlugin({
             filename: (getPath) => getPath('[name].css').replace(getPath('[name].css'), cssBundle),
-            allChunks: true
+            allChunks: true,
+            disable: false
         }),
         new HtmlWebpackPlugin({
             title: 'Poll',
@@ -59,7 +61,13 @@ const webpackConfig = {
             // },
             hash: true
         })
-    ]
+    ],
+    devtool: 'inline-source-map',
+    devServer: {
+        contentBase: BUILD_DIR,
+        compress: true,
+        port: 3003
+    }
 };
 
 module.exports = webpackConfig;

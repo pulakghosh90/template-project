@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { fetch, save } from '../service/Service';
-import styles from './poll.css';
+import styles from './poll.scss';
 
 function update(state, action) {
     const { type } = action;
@@ -86,6 +86,7 @@ class Subject extends Component {
         this.props.dispatch(IncrementLike(subject.id, optionId));
     }
     render() {
+        debugger;
         const { subject } = this.props;
         if (!subject)
             return null;
