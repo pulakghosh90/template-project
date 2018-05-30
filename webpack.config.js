@@ -54,9 +54,9 @@ const webpackConfig = {
             title: 'Poll',
             filename: htmlBundle,
             template,
-            minify: {
-                collapseWhitespace: true
-            },
+            // minify: {
+            //     collapseWhitespace: true
+            // },
             hash: true
         })
     ]
